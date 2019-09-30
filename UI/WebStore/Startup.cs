@@ -21,6 +21,7 @@ using WebStore.Interfaces.Api;
 using WebStore.Models;
 using WebStore.Services.Data;
 using WebStore.Logger;
+using WebStore.Infrastructure.Midleware;
 
 namespace WebStore
 {
@@ -90,6 +91,8 @@ namespace WebStore
             //app.UseWelcomePage("/Welcome");
 
             app.UseAuthentication();
+
+            app.UseMiddleware<ErrorMidleware>();
 
             //app.UseMvcWithDefaultRoute(); // "default" : "{controller=Home}/{action=Index}/{id?}"
             app.UseMvc(route =>
