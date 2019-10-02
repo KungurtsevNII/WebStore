@@ -19,6 +19,7 @@ using WebStore.Domain.Entities;
 using WebStore.Infrastructure.Implementations;
 using WebStore.Infrastructure.Interfaces;
 using WebStore.Services.Data;
+using WebStore.Logger;
 
 namespace WebStore.ServiceHosting
 {
@@ -76,8 +77,10 @@ namespace WebStore.ServiceHosting
             #endregion
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, WebStoreContextInitializer db)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, WebStoreContextInitializer db, ILoggerFactory log)
         {
+            log.AddLog4Net();
+
             db.InitializeAsync().Wait();
 
             if (env.IsDevelopment())

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace WebStore.Controllers
 {
@@ -25,7 +26,11 @@ namespace WebStore.Controllers
 
         public IActionResult Error404()
         {
+            throw new ApplicationException("Отладочное исклбчение");
             _logger.LogWarning("Запрос страницы 404");
+            _logger.LogCritical("Запрос страницы 404");
+            _logger.LogDebug("Запрос страницы 404");
+            _logger.LogError("Запрос страницы 404");
             return View();
         }
     }
