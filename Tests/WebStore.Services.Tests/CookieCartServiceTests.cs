@@ -8,7 +8,7 @@ using Assert = Xunit.Assert;
 namespace WebStore.Services.Tests
 {
     [TestClass]
-    class CookieCartServiceTests
+    public class CookieCartServiceTests
     {
         [TestMethod]
         public void Cart_Class_ItemsCount_Returns_Correct_Quantity()
