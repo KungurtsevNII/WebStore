@@ -24,14 +24,27 @@ namespace WebStore.Controllers
 
         public IActionResult BlogSingle() => View();
 
-        public IActionResult Error404()
+        public IActionResult ThrowException() => throw new ApplicationException("Отладочное исклбчение");
+
+        public IActionResult NotFoundPage()
         {
-            throw new ApplicationException("Отладочное исклбчение");
+            
             _logger.LogWarning("Запрос страницы 404");
             _logger.LogCritical("Запрос страницы 404");
             _logger.LogDebug("Запрос страницы 404");
             _logger.LogError("Запрос страницы 404");
             return View();
+        }
+
+        public IActionResult ErrorStatus(string id)
+        {
+            _logger.LogWarning("Запрос статусного кода ошибки {0}", id);
+
+            switch (id)
+            {
+                default: return Content($"Статусный код ошибки { id }");
+                case "404": return RedirectToAction(nameof(NotFoundPage));
+            }
         }
     }
 }
